@@ -1,0 +1,19 @@
+@import "./theme.css";
+@import "leaflet/dist/leaflet.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { @apply bg-canvas text-ink font-sans antialiased; }
+.num { font-variant-numeric: tabular-nums; @apply font-mono; }
+.leaflet-container { background: rgb(var(--raised)); font-family: inherit; }
+/* Mosaico do OSM em tons de cinza para não competir com as cores dos pontos */
+.mosaico-base { filter: grayscale(1) contrast(0.9) brightness(1.05); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mosaico-base { filter: grayscale(1) invert(1) brightness(0.8) contrast(0.9); }
+}
+:root[data-theme="dark"] .mosaico-base { filter: grayscale(1) invert(1) brightness(0.8) contrast(0.9); }
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+}

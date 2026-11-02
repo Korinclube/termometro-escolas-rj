@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "AcaoRecomendada": {
+      "properties": {
+        "publico": {
+          "enum": [
+            "direcao",
+            "professores",
+            "merendeiras",
+            "alunos",
+            "familias",
+            "rede_de_ensino"
+          ],
+          "title": "Publico",
+          "type": "string"
+        },
+        "acao": {
+          "description": "Ação concreta, em uma frase, no imperativo.",
+          "title": "Acao",
+          "type": "string"
+        },
+        "quando": {
+          "description": "Data ou condição de disparo (ex.: '2026-11-04, turno da tarde').",
+          "title": "Quando",
+          "type": "string"
+        },
+        "faixa_gatilho": {
+          "enum": [
+            "Atenção",
+            "Alerta",
+            "Perigo"
+          ],
+          "title": "Faixa Gatilho",
+          "type": "string"
+        }
+      },
+      "required": [
+        "publico",
+        "acao",
+        "quando",
+        "faixa_gatilho"
+      ],
+      "title": "AcaoRecomendada",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "resumo": {
+      "description": "2 a 4 frases sobre o risco nos próximos dias letivos.",
+      "title": "Resumo",
+      "type": "string"
+    },
+    "riscos_principais": {
+      "description": "Até 4 riscos, citando datas e números do input.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Riscos Principais",
+      "type": "array"
+    },
+    "acoes_recomendadas": {
+      "items": {
+        "$ref": "#/$defs/AcaoRecomendada"
+      },
+      "title": "Acoes Recomendadas",
+      "type": "array"
+    },
+    "mensagem_familias": {
+      "description": "Mensagem curta de WhatsApp, linguagem simples, sem alarmismo.",
+      "title": "Mensagem Familias",
+      "type": "string"
+    },
+    "limitacoes": {
+      "description": "Incertezas do dado que o leitor precisa saber.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitacoes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "resumo",
+    "riscos_principais",
+    "acoes_recomendadas",
+    "mensagem_familias",
+    "limitacoes"
+  ],
+  "title": "ParecerTecnico",
+  "type": "object"
+}
